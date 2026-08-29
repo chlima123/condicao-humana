@@ -1,0 +1,1743 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>A Condição Humana — Hannah Arendt | Guia Interativo</title>
+  <meta name="description" content="Dashboard navegável e guia estruturado da obra A Condição Humana de Hannah Arendt.">
+  <style>
+    :root {
+      --navy: #0E2A33;
+      --navy-2: #163A46;
+      --latao: #B98A2F;
+      --latao-2: #D4A94E;
+      --papel: #F6F4EE;
+      --papel-2: #EFEBE0;
+      --tinta: #1E2A2E;
+      --card-bg: #FFFFFF;
+      --muted: #57686F;
+      --line: rgba(14, 42, 51, 0.12);
+      --line-dark: rgba(255, 255, 255, 0.12);
+      --serif: "Fraunces", "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+      --sans: "Public Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      --mono: "IBM Plex Mono", "SFMono-Regular", Menlo, Monaco, Consolas, monospace;
+      --radius: 8px;
+      --shadow-sm: 0 2px 6px rgba(14, 42, 51, 0.05);
+      --shadow-md: 0 6px 18px rgba(14, 42, 51, 0.08);
+      --shadow-lg: 0 12px 32px rgba(14, 42, 51, 0.12);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: var(--sans);
+      background-color: var(--papel);
+      color: var(--tinta);
+      line-height: 1.6;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* TOPBAR */
+    .topbar {
+      background: linear-gradient(135deg, var(--navy) 0%, var(--navy-2) 100%);
+      color: var(--papel);
+      padding: 16px 28px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 3px solid var(--latao);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 4px 16px rgba(14, 42, 51, 0.25);
+    }
+
+    .brand-area {
+      display: flex;
+      align-items: baseline;
+      gap: 14px;
+    }
+
+    .brand-title {
+      font-family: var(--serif);
+      font-size: 1.45rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: var(--papel);
+    }
+
+    .brand-sub {
+      font-family: var(--mono);
+      font-size: 0.82rem;
+      color: var(--latao-2);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .topbar-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .btn-print {
+      font-family: var(--sans);
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--navy);
+      background-color: var(--latao);
+      border: 1px solid var(--latao-2);
+      padding: 7px 14px;
+      border-radius: var(--radius);
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s ease;
+    }
+
+    .btn-print:hover {
+      background-color: var(--latao-2);
+      transform: translateY(-1px);
+    }
+
+    /* APP LAYOUT */
+    .app-container {
+      display: flex;
+      flex: 1;
+      min-height: calc(100vh - 65px);
+    }
+
+    /* SIDEBAR */
+    .sidebar {
+      width: 280px;
+      background-color: var(--navy);
+      color: var(--papel);
+      display: flex;
+      flex-direction: column;
+      flex-shrink: 0;
+      border-right: 1px solid var(--navy-2);
+    }
+
+    .nav-list {
+      list-style: none;
+      padding: 16px 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .nav-item button {
+      width: 100%;
+      text-align: left;
+      background: none;
+      border: none;
+      color: #CAD5DB;
+      font-family: var(--sans);
+      font-size: 0.95rem;
+      font-weight: 500;
+      padding: 10px 14px;
+      border-radius: var(--radius);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      transition: all 0.15s ease;
+    }
+
+    .nav-item button:hover {
+      background-color: var(--navy-2);
+      color: var(--papel);
+    }
+
+    .nav-item.active button {
+      background: linear-gradient(90deg, rgba(185, 138, 47, 0.22) 0%, rgba(185, 138, 47, 0.08) 100%);
+      color: var(--latao-2);
+      border-left: 3px solid var(--latao);
+      font-weight: 600;
+    }
+
+    .nav-badge {
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      background-color: rgba(255, 255, 255, 0.1);
+      padding: 2px 7px;
+      border-radius: 10px;
+      color: var(--papel);
+    }
+
+    .sidebar-footer {
+      margin-top: auto;
+      padding: 18px 16px;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      font-size: 0.78rem;
+      color: #8E9EA5;
+      font-family: var(--mono);
+      line-height: 1.5;
+    }
+
+    .sidebar-footer strong {
+      color: var(--latao-2);
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    /* MAIN CONTENT */
+    .main-content {
+      flex: 1;
+      padding: 36px 48px;
+      overflow-y: auto;
+      max-width: 1200px;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    /* SECTIONS */
+    .view-section {
+      display: none;
+      animation: fadeIn 0.2s ease-in-out;
+    }
+
+    .view-section.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(4px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* COMMON COMPONENTS */
+    .section-eyebrow {
+      font-family: var(--mono);
+      font-size: 0.8rem;
+      color: var(--latao);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      margin-bottom: 6px;
+      font-weight: 600;
+    }
+
+    .section-title {
+      font-family: var(--serif);
+      font-size: 2.1rem;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 24px;
+      line-height: 1.25;
+      border-bottom: 2px solid var(--line);
+      padding-bottom: 12px;
+    }
+
+    /* CARDS */
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 24px 28px;
+      margin-bottom: 24px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .card-highlight {
+      border-left: 4px solid var(--latao);
+      background: linear-gradient(180deg, #FFFFFF 0%, var(--papel) 100%);
+    }
+
+    .card-title {
+      font-family: var(--serif);
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    /* SECTION 1: VISÃO GERAL */
+    .thesis-text {
+      font-family: var(--serif);
+      font-size: 1.15rem;
+      line-height: 1.75;
+      color: var(--navy);
+      font-style: italic;
+    }
+
+    .meta-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 16px;
+      margin-bottom: 28px;
+    }
+
+    .meta-box {
+      background: var(--papel-2);
+      border: 1px solid var(--line);
+      padding: 14px 18px;
+      border-radius: var(--radius);
+    }
+
+    .meta-label {
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: 4px;
+    }
+
+    .meta-val {
+      font-family: var(--sans);
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--navy);
+    }
+
+    /* DECISION TREE */
+    .tree-block {
+      background: var(--navy);
+      color: var(--papel);
+      border-radius: var(--radius);
+      padding: 28px;
+      margin-bottom: 28px;
+    }
+
+    .tree-step-title {
+      font-family: var(--serif);
+      font-size: 1.25rem;
+      color: var(--latao-2);
+      margin-bottom: 16px;
+      border-bottom: 1px solid var(--line-dark);
+      padding-bottom: 8px;
+    }
+
+    .tree-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 18px;
+      margin-bottom: 24px;
+    }
+
+    .tree-card {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--line-dark);
+      border-radius: var(--radius);
+      padding: 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .tree-cond {
+      font-size: 0.95rem;
+      font-weight: 500;
+      color: #E2E9EC;
+    }
+
+    .tree-result-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin-top: auto;
+      padding-top: 8px;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .tree-result-badge {
+      font-family: var(--mono);
+      font-size: 0.85rem;
+      font-weight: 700;
+      background: var(--latao);
+      color: var(--navy);
+      padding: 4px 10px;
+      border-radius: 4px;
+      letter-spacing: 0.04em;
+    }
+
+    .tree-cond-tag {
+      font-family: var(--mono);
+      font-size: 0.75rem;
+      color: var(--latao-2);
+    }
+
+    .tree-detail {
+      font-size: 0.85rem;
+      color: #CAD5DB;
+      line-height: 1.45;
+    }
+
+    /* STRUCTURE TABLE */
+    .table-container {
+      overflow-x: auto;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--card-bg);
+      margin-bottom: 28px;
+    }
+
+    table.data-table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+      font-size: 0.92rem;
+    }
+
+    table.data-table th {
+      background: var(--navy);
+      color: var(--papel);
+      font-family: var(--mono);
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      padding: 14px 18px;
+      border-bottom: 2px solid var(--latao);
+    }
+
+    table.data-table td {
+      padding: 14px 18px;
+      border-bottom: 1px solid var(--line);
+      vertical-align: top;
+    }
+
+    table.data-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    table.data-table tr:hover td {
+      background-color: rgba(185, 138, 47, 0.05);
+    }
+
+    .row-num-badge {
+      font-family: var(--serif);
+      font-weight: 700;
+      font-size: 1.1rem;
+      color: var(--latao);
+      background: var(--papel-2);
+      border: 1px solid var(--line);
+      width: 34px;
+      height: 34px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+    }
+
+    /* SECTION 2: CAPÍTULOS */
+    .chapter-selector {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 28px;
+      overflow-x: auto;
+      padding-bottom: 4px;
+    }
+
+    .chapter-chip {
+      background: var(--papel-2);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 8px 16px;
+      font-family: var(--mono);
+      font-size: 0.85rem;
+      color: var(--navy);
+      cursor: pointer;
+      white-space: nowrap;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.15s ease;
+    }
+
+    .chapter-chip:hover {
+      background: var(--card-bg);
+      border-color: var(--latao);
+    }
+
+    .chapter-chip.active {
+      background: var(--navy);
+      color: var(--papel);
+      border-color: var(--navy);
+    }
+
+    .chapter-chip.active .chip-num {
+      color: var(--latao-2);
+    }
+
+    /* CHAPTER HERO */
+    .chapter-hero {
+      position: relative;
+      background: linear-gradient(135deg, var(--navy) 0%, #1A4452 100%);
+      color: var(--papel);
+      border-radius: var(--radius);
+      padding: 36px 40px;
+      margin-bottom: 32px;
+      overflow: hidden;
+      border-bottom: 3px solid var(--latao);
+      box-shadow: var(--shadow-md);
+    }
+
+    .ceremonial-numeral {
+      position: absolute;
+      right: 24px;
+      top: -10px;
+      font-family: var(--serif);
+      font-size: 11rem;
+      font-weight: 800;
+      color: rgba(255, 255, 255, 0.05);
+      line-height: 1;
+      user-select: none;
+      pointer-events: none;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 800px;
+    }
+
+    .hero-eyebrow {
+      font-family: var(--mono);
+      font-size: 0.85rem;
+      color: var(--latao-2);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 8px;
+    }
+
+    .hero-title {
+      font-family: var(--serif);
+      font-size: 2.2rem;
+      font-weight: 700;
+      line-height: 1.2;
+      color: var(--papel);
+      margin-bottom: 12px;
+    }
+
+    .hero-subtitle {
+      font-size: 1.05rem;
+      color: #D3DFE4;
+      margin-bottom: 20px;
+      font-weight: 400;
+    }
+
+    .hero-core-box {
+      background: rgba(255, 255, 255, 0.08);
+      border-left: 3px solid var(--latao);
+      padding: 16px 20px;
+      border-radius: 0 var(--radius) var(--radius) 0;
+      font-size: 0.98rem;
+      line-height: 1.6;
+      color: var(--papel);
+    }
+
+    .hero-core-box strong {
+      color: var(--latao-2);
+    }
+
+    /* CHAPTER SUB-SECTIONS */
+    .subhead-title {
+      font-family: var(--serif);
+      font-size: 1.35rem;
+      color: var(--navy);
+      margin: 28px 0 16px 0;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .framework-card {
+      background: var(--card-bg);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 22px 26px;
+      margin-bottom: 18px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .framework-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+
+    .framework-name {
+      font-family: var(--serif);
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--navy);
+    }
+
+    .framework-when {
+      background: var(--papel-2);
+      border-left: 3px solid var(--latao);
+      padding: 8px 14px;
+      font-size: 0.88rem;
+      color: var(--navy);
+      margin-bottom: 12px;
+      border-radius: 0 var(--radius) var(--radius) 0;
+    }
+
+    .framework-how {
+      font-size: 0.95rem;
+      line-height: 1.6;
+      color: var(--tinta);
+    }
+
+    /* CONCEPTS GRID */
+    .concepts-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+
+    .concept-card {
+      background: var(--card-bg);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 16px 20px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .concept-term {
+      font-family: var(--mono);
+      font-size: 0.92rem;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 6px;
+      display: inline-block;
+      border-bottom: 2px solid var(--latao);
+      padding-bottom: 2px;
+    }
+
+    .concept-desc {
+      font-size: 0.88rem;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    /* MENTAL MODELS & TAKEAWAYS */
+    .list-numbered {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+
+    .list-numbered li {
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+      background: var(--card-bg);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 14px 18px;
+    }
+
+    .list-num {
+      font-family: var(--mono);
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--navy);
+      background: var(--latao-2);
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    /* ANTI PATTERNS */
+    .antipattern-item {
+      background: #FFF8F6;
+      border: 1px solid #F1D2CC;
+      border-left: 4px solid #C94A29;
+      border-radius: var(--radius);
+      padding: 14px 18px;
+      margin-bottom: 12px;
+    }
+
+    .antipattern-wrong {
+      font-weight: 700;
+      color: #9C2E14;
+      margin-bottom: 4px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .antipattern-fix {
+      font-size: 0.9rem;
+      color: #5C3227;
+    }
+
+    /* CONNECTS TO */
+    .connects-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 14px;
+    }
+
+    .connect-chip {
+      background: var(--papel-2);
+      border: 1px solid var(--line);
+      padding: 8px 14px;
+      border-radius: var(--radius);
+      font-size: 0.88rem;
+      color: var(--navy);
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.15s ease;
+    }
+
+    .connect-chip:hover {
+      border-color: var(--latao);
+      background: var(--card-bg);
+      transform: translateY(-1px);
+    }
+
+    .connect-chip strong {
+      font-family: var(--mono);
+      color: var(--latao);
+    }
+
+    /* CHAPTER NAV BOTTOM */
+    .chapter-nav-bottom {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 24px 0 12px 0;
+      margin-top: 36px;
+      border-top: 2px solid var(--line);
+    }
+
+    .btn-ch-nav {
+      background: var(--navy);
+      color: var(--papel);
+      border: 1px solid var(--navy-2);
+      font-family: var(--sans);
+      font-size: 0.95rem;
+      font-weight: 600;
+      padding: 10px 20px;
+      border-radius: var(--radius);
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.15s ease;
+    }
+
+    .btn-ch-nav:hover:not(:disabled) {
+      background: var(--navy-2);
+      border-color: var(--latao);
+      color: var(--latao-2);
+    }
+
+    .btn-ch-nav:disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+    }
+
+    .kbd-tip {
+      font-family: var(--mono);
+      font-size: 0.78rem;
+      color: var(--muted);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    kbd {
+      background: var(--papel-2);
+      border: 1px solid var(--line);
+      border-radius: 4px;
+      padding: 2px 6px;
+      font-size: 0.75rem;
+      font-family: var(--mono);
+      box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+    }
+
+    /* SECTION 3: GLOSSÁRIO */
+    .search-box-wrap {
+      position: relative;
+      margin-bottom: 24px;
+    }
+
+    .search-input {
+      width: 100%;
+      font-family: var(--sans);
+      font-size: 1.05rem;
+      padding: 14px 20px 14px 44px;
+      border: 2px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--card-bg);
+      color: var(--navy);
+      outline: none;
+      transition: border-color 0.2s ease;
+    }
+
+    .search-input:focus {
+      border-color: var(--latao);
+    }
+
+    .search-icon {
+      position: absolute;
+      left: 16px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 1.1rem;
+      color: var(--muted);
+    }
+
+    .glossary-stats {
+      font-family: var(--mono);
+      font-size: 0.85rem;
+      color: var(--muted);
+      margin-bottom: 18px;
+    }
+
+    .glossary-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 18px;
+    }
+
+    .glossary-card {
+      background: var(--card-bg);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 20px 24px;
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .glossary-term-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .glossary-term-name {
+      font-family: var(--serif);
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--navy);
+    }
+
+    .ch-badge-list {
+      display: flex;
+      gap: 4px;
+    }
+
+    .ch-badge {
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      font-weight: 600;
+      background: var(--papel-2);
+      border: 1px solid var(--line);
+      color: var(--navy);
+      padding: 2px 7px;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+
+    .ch-badge:hover {
+      background: var(--navy);
+      color: var(--papel);
+      border-color: var(--navy);
+    }
+
+    .glossary-def {
+      font-size: 0.92rem;
+      line-height: 1.55;
+      color: var(--tinta);
+    }
+
+    /* SECTION 4: CHEATSHEET */
+    .cheatsheet-table {
+      width: 100%;
+      margin-bottom: 28px;
+    }
+
+    /* SECTION 5: PADRÕES */
+    .pattern-card {
+      background: var(--card-bg);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 24px 28px;
+      margin-bottom: 22px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .pattern-meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 12px;
+    }
+
+    .pattern-cat {
+      font-family: var(--mono);
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      background: rgba(185, 138, 47, 0.12);
+      color: #8A641A;
+      padding: 3px 8px;
+      border-radius: 4px;
+    }
+
+    .pattern-title {
+      font-family: var(--serif);
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 14px;
+    }
+
+    .pattern-body {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      font-size: 0.93rem;
+    }
+
+    .pattern-row strong {
+      font-family: var(--sans);
+      color: var(--navy);
+    }
+
+    /* FOOTER */
+    .page-footer {
+      background: var(--navy);
+      color: #92A3AA;
+      padding: 24px 36px;
+      font-size: 0.82rem;
+      text-align: center;
+      border-top: 1px solid var(--navy-2);
+      margin-top: auto;
+    }
+
+    .page-footer a {
+      color: var(--latao-2);
+      text-decoration: none;
+    }
+
+    /* RESPONSIVE DESIGN (<= 900px) */
+    @media (max-width: 900px) {
+      .app-container {
+        flex-direction: column;
+      }
+      .sidebar {
+        width: 100%;
+        border-right: none;
+        border-bottom: 1px solid var(--navy-2);
+      }
+      .nav-list {
+        flex-direction: row;
+        overflow-x: auto;
+        padding: 8px 12px;
+        gap: 6px;
+      }
+      .nav-item button {
+        white-space: nowrap;
+        padding: 8px 12px;
+        font-size: 0.88rem;
+      }
+      .sidebar-footer {
+        display: none;
+      }
+      .main-content {
+        padding: 24px 18px;
+      }
+      .section-title {
+        font-size: 1.7rem;
+      }
+      .chapter-hero {
+        padding: 24px 20px;
+      }
+      .ceremonial-numeral {
+        font-size: 7rem;
+        right: 10px;
+        top: 0;
+      }
+      .hero-title {
+        font-size: 1.6rem;
+      }
+    }
+
+    /* PRINT STYLES */
+    @media print {
+      @page {
+        size: A4 portrait;
+        margin: 12mm;
+      }
+      body {
+        background: #FFFFFF !important;
+        color: #000000 !important;
+        font-size: 10pt;
+      }
+      .topbar, .sidebar, .chapter-selector, .chapter-nav-bottom, .btn-print, .search-box-wrap, .page-footer {
+        display: none !important;
+      }
+      .app-container {
+        display: block !important;
+      }
+      .main-content {
+        padding: 0 !important;
+        max-width: 100% !important;
+      }
+      .view-section {
+        display: block !important;
+        page-break-after: always;
+        margin-bottom: 30px;
+      }
+      .card, .tree-block, .chapter-hero, .framework-card, .pattern-card, .table-container {
+        box-shadow: none !important;
+        border: 1px solid #CCCCCC !important;
+        background: #FFFFFF !important;
+        color: #000000 !important;
+        page-break-inside: avoid;
+      }
+      .chapter-hero {
+        background: #F8F8F8 !important;
+        color: #000000 !important;
+      }
+      .hero-title, .hero-subtitle, .hero-eyebrow, .hero-core-box {
+        color: #000000 !important;
+      }
+      .ceremonial-numeral {
+        color: rgba(0,0,0,0.06) !important;
+      }
+      table.data-table th {
+        background: #EEEEEE !important;
+        color: #000000 !important;
+        border-bottom: 2px solid #000000 !important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- TOPBAR -->
+  <header class="topbar">
+    <div class="brand-area">
+      <div class="brand-title">A Condição Humana</div>
+      <div class="brand-sub">Hannah Arendt · Guia Interativo</div>
+    </div>
+    <div class="topbar-actions">
+      <button class="btn-print" onclick="window.print()" title="Imprimir ou Salvar em PDF">
+        <span>🖨️</span> Imprimir / PDF
+      </button>
+    </div>
+  </header>
+
+  <!-- APP CONTAINER -->
+  <div class="app-container">
+    
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+      <ul class="nav-list" role="tablist">
+        <li class="nav-item active" id="nav-overview">
+          <button onclick="switchTab('overview')" role="tab" aria-selected="true">
+            <span>🏛️ Visão Geral</span>
+            <span class="nav-badge">Síntese</span>
+          </button>
+        </li>
+        <li class="nav-item" id="nav-chapters">
+          <button onclick="switchTab('chapters')" role="tab" aria-selected="false">
+            <span>📖 Capítulos</span>
+            <span class="nav-badge">6 Cap</span>
+          </button>
+        </li>
+        <li class="nav-item" id="nav-glossary">
+          <button onclick="switchTab('glossary')" role="tab" aria-selected="false">
+            <span>📚 Glossário</span>
+            <span class="nav-badge" id="glossary-nav-count">27 termos</span>
+          </button>
+        </li>
+        <li class="nav-item" id="nav-cheatsheet">
+          <button onclick="switchTab('cheatsheet')" role="tab" aria-selected="false">
+            <span>📋 Cheatsheet</span>
+            <span class="nav-badge">Regras</span>
+          </button>
+        </li>
+        <li class="nav-item" id="nav-patterns">
+          <button onclick="switchTab('patterns')" role="tab" aria-selected="false">
+            <span>⚖️ Padrões</span>
+            <span class="nav-badge">6 Padrões</span>
+          </button>
+        </li>
+      </ul>
+
+      <div class="sidebar-footer">
+        <strong>Base de Conhecimento</strong>
+        <em>A Condição Humana (1958)</em><br>
+        10ª Edição · Trad. Roberto Raposo<br>
+        Atalhos: <kbd>/</kbd> busca · <kbd>←</kbd> <kbd>→</kbd> capítulos
+      </div>
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <main class="main-content">
+
+      <!-- SECTION 1: VISÃO GERAL -->
+      <section id="sec-overview" class="view-section active" role="tabpanel">
+        <div class="section-eyebrow">Apresentação & Estrutura da Obra</div>
+        <h1 class="section-title">Visão Geral</h1>
+
+        <!-- META GRID -->
+        <div class="meta-grid" id="overview-meta-grid"></div>
+
+        <!-- CENTRAL THESIS CARD -->
+        <div class="card card-highlight">
+          <div class="card-title">
+            <span>Tese Central da Obra</span>
+            <span class="nav-badge" style="background: var(--navy); color: var(--papel);">Vita Activa</span>
+          </div>
+          <p class="thesis-text" id="overview-thesis"></p>
+        </div>
+
+        <!-- DECISION TREE BLOCK -->
+        <div class="tree-block">
+          <div class="tree-step-title">Árvore de Decisão & Diagnóstico da Condição Humana</div>
+          <div id="overview-tree-container"></div>
+        </div>
+
+        <!-- STRUCTURE TABLE -->
+        <div class="card-title" style="margin-top: 32px;">
+          <span>Estrutura dos Capítulos</span>
+          <span class="nav-badge" style="background: var(--papel-2); color: var(--navy);">6 Capítulos</span>
+        </div>
+        <div class="table-container">
+          <table class="data-table" id="overview-structure-table">
+            <thead>
+              <tr>
+                <th style="width: 60px;">Cap.</th>
+                <th style="width: 260px;">Título</th>
+                <th>Foco & Frameworks Centrais</th>
+                <th style="width: 190px;">Condição Humana</th>
+                <th style="width: 90px; text-align: center;">Acessar</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- SECTION 2: CAPÍTULOS -->
+      <section id="sec-chapters" class="view-section" role="tabpanel">
+        <div class="section-eyebrow">Leitura Estruturada dos Capítulos</div>
+        <h1 class="section-title">Capítulos</h1>
+
+        <!-- CHAPTER CHIPS -->
+        <div class="chapter-selector" id="chapter-chip-list"></div>
+
+        <!-- ACTIVE CHAPTER HERO -->
+        <div class="chapter-hero" id="chapter-hero-box">
+          <div class="ceremonial-numeral" id="ch-hero-num">I</div>
+          <div class="hero-content">
+            <div class="hero-eyebrow" id="ch-hero-eyebrow">Capítulo I</div>
+            <h2 class="hero-title" id="ch-hero-title">Título do Capítulo</h2>
+            <p class="hero-subtitle" id="ch-hero-subtitle">Subtítulo do Capítulo</p>
+            <div class="hero-core-box">
+              <strong>Núcleo da Ideia: </strong><span id="ch-hero-core"></span>
+            </div>
+          </div>
+        </div>
+
+        <!-- FRAMEWORKS -->
+        <div class="subhead-title">🏛️ Frameworks Introduzidos</div>
+        <div id="ch-frameworks-list"></div>
+
+        <!-- CONCEPTS -->
+        <div class="subhead-title">🔑 Conceitos-Chave</div>
+        <div class="concepts-grid" id="ch-concepts-grid"></div>
+
+        <!-- MENTAL MODELS -->
+        <div class="subhead-title">🧠 Modelos Mentais</div>
+        <ul class="list-numbered" id="ch-mental-models-list"></ul>
+
+        <!-- ANTI-PATTERNS -->
+        <div class="subhead-title">⚠️ Anti-padrões & Erros Comuns</div>
+        <div id="ch-antipatterns-list"></div>
+
+        <!-- KEY TAKEAWAYS -->
+        <div class="subhead-title">📌 Principais Takeaways</div>
+        <ul class="list-numbered" id="ch-takeaways-list"></ul>
+
+        <!-- CONNECTS TO -->
+        <div class="subhead-title">🔗 Conexões com Outros Capítulos</div>
+        <div class="connects-bar" id="ch-connects-list"></div>
+
+        <!-- BOTTOM NAV -->
+        <div class="chapter-nav-bottom">
+          <button class="btn-ch-nav" id="btn-prev-ch" onclick="navPrev()">
+            <span>←</span> Anterior
+          </button>
+          <div class="kbd-tip">
+            Navegue pelos capítulos com <kbd>←</kbd> <kbd>→</kbd>
+          </div>
+          <button class="btn-ch-nav" id="btn-next-ch" onclick="navNext()">
+            Próximo <span>→</span>
+          </button>
+        </div>
+      </section>
+
+      <!-- SECTION 3: GLOSSÁRIO -->
+      <section id="sec-glossary" class="view-section" role="tabpanel">
+        <div class="section-eyebrow">Dicionário de Conceitos & Vocabulário</div>
+        <h1 class="section-title">Glossário</h1>
+
+        <!-- SEARCH INPUT -->
+        <div class="search-box-wrap">
+          <span class="search-icon">🔍</span>
+          <input 
+            type="text" 
+            id="glossary-search" 
+            class="search-input" 
+            placeholder="Pesquisar termos ou definições... (Pressione '/' para focar)"
+            oninput="handleGlossarySearch()"
+          >
+        </div>
+
+        <div class="glossary-stats" id="glossary-stats-text">Exibindo 27 termos</div>
+
+        <!-- GLOSSARY GRID -->
+        <div class="glossary-grid" id="glossary-cards-grid"></div>
+      </section>
+
+      <!-- SECTION 4: CHEATSHEET -->
+      <section id="sec-cheatsheet" class="view-section" role="tabpanel">
+        <div class="section-eyebrow">Tabelas de Consulta Rápida & Distinções</div>
+        <h1 class="section-title">Cheatsheet</h1>
+
+        <!-- TABLE 1: AS TRÊS ATIVIDADES -->
+        <div class="card-title">
+          <span>1. As Três Atividades da Vita Activa</span>
+          <span class="nav-badge" style="background: var(--latao); color: var(--navy);">Quadro Comparativo</span>
+        </div>
+        <div class="table-container">
+          <table class="data-table" id="table-activities">
+            <thead>
+              <tr>
+                <th style="width: 130px;">Atividade</th>
+                <th style="width: 220px;">Condição Humana</th>
+                <th>Caráter & Funcionamento</th>
+                <th>Produto Resultante</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+
+        <!-- TABLE 2: DISTINÇÕES CHAVE (TELLS & SMELLS) -->
+        <div class="card-title" style="margin-top: 36px;">
+          <span>2. Distinções-Chave & Indicadores Diagnósticos (Tells & Smells)</span>
+          <span class="nav-badge" style="background: var(--navy); color: var(--papel);">Diferenciação</span>
+        </div>
+        <div class="table-container">
+          <table class="data-table" id="table-distinctions">
+            <thead>
+              <tr>
+                <th style="width: 170px;">Distinção</th>
+                <th>Polo 1</th>
+                <th>Polo 2</th>
+                <th style="width: 240px;">Como Identificar (Tell / Smell)</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+
+        <!-- TABLE 3: GUIA DE DECISÃO RÁPIDA -->
+        <div class="card-title" style="margin-top: 36px;">
+          <span>3. Guia de Decisão & Enquadramento Rápido</span>
+          <span class="nav-badge" style="background: var(--papel-2); color: var(--navy);">Regras de Decisão</span>
+        </div>
+        <div class="table-container">
+          <table class="data-table" id="table-decision-guide">
+            <thead>
+              <tr>
+                <th>Pergunta Diagnóstica</th>
+                <th style="width: 190px;">Classificação Arendtiana</th>
+                <th>Regra de Ação / Enquadramento</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- SECTION 5: PADRÕES -->
+      <section id="sec-patterns" class="view-section" role="tabpanel">
+        <div class="section-eyebrow">Técnicas, Métodos de Análise & Anti-Padrões</div>
+        <h1 class="section-title">Padrões & Técnicas</h1>
+
+        <!-- PATTERNS CARDS -->
+        <div id="patterns-container"></div>
+
+        <!-- ANTI-PATTERNS TABLE -->
+        <div class="card-title" style="margin-top: 36px;">
+          <span>Anti-padrões Clássicos & Correções Arendtianas</span>
+          <span class="nav-badge" style="background: #9C2E14; color: #FFF;">Evitar</span>
+        </div>
+        <div class="table-container">
+          <table class="data-table" id="table-antipatterns">
+            <thead>
+              <tr>
+                <th style="width: 220px;">Anti-padrão</th>
+                <th>Problema / Distorção Gerada</th>
+                <th>Correção & Postura Correta</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="page-footer">
+    <strong>A Condição Humana</strong> — Hannah Arendt (1958) · Guia Interativo & Base de Conhecimento Estruturada.<br>
+    Renderizado em HTML puro autocontido · Paleta Pauta Ministerial · Desenvolvido para Estudo & Consulta.
+  </footer>
+
+  <!-- SCRIPT -->
+  <script>
+    /* EMBEDDED DATA FROM PYTHON */
+    var OVERVIEW_DATA = {"title": "A Condição Humana", "author": "Hannah Arendt", "meta": {"edition": "10ª edição, Forense Universitária", "translation": "Roberto Raposo", "pages": 174, "chapters_count": 6, "terms_count": 27, "patterns_count": 6, "year_original": 1958, "category": "Filosofia Política & Teoria da Ação"}, "thesis": "A vita activa compreende três atividades humanas fundamentais — labor, trabalho e ação —, cada uma enraizada em uma das condições básicas da existência na Terra: a vida (biológica), a mundanidade (o artifício das coisas duráveis) e a pluralidade (a convivência política entre seres iguais e singulares). A ação e o discurso constituem a esfera política por excelência e a revelação do agente ('quem' é o homem), fundada no princípio da natalidade (a capacidade de iniciar o novo e o inesperado). A era moderna operou uma inversão hierárquica e uma profunda alienação do mundo mediante o ponto de vista arquimediano, coroando a vitória do animal laborans e reduzindo a existência humana aos imperativos do ciclo biológico de produção e consumo voraz.", "decision_tree": [{"step": "1. Qual é a finalidade da atividade?", "branches": [{"condition": "Atende aos processos e necessidades biológicas do corpo (alimentação, sobrevivência, metabolismo)", "result": "LABOR", "badge": "Condição: Vida", "detail": "Cíclico, consome imediatamente, servil, não produz objetos permanentes. Sujeito: Animal laborans."}, {"condition": "Fabrica objetos duráveis e constrói o artifício humano (mobiliário, ferramentas, cidades)", "result": "TRABALHO", "badge": "Condição: Mundanidade", "detail": "Linear, reifica matéria-prima, confere objetividade e estabilidade ao mundo. Sujeito: Homo faber."}, {"condition": "Exerce-se diretamente entre seres humanos sem mediação material (discurso, deliberação, iniciativa)", "result": "AÇÃO", "badge": "Condição: Pluralidade", "detail": "Político por excelência, funda-se na natalidade, revela 'quem' é o agente e inicia o novo. Sujeito: Zoon politikon."}]}, {"step": "2. Diagnóstico da Modernidade", "branches": [{"condition": "Ciência universalista & Ponto de Vista Arquimediano", "result": "Alienação do Mundo", "badge": "Crise Cósmica", "detail": "Observar a Terra da perspectiva cósmica encurta distâncias, mas destrói o espaço mundano imediato e a estabilidade terrena."}, {"condition": "Glorificação da Sociedade de Produtores e Consumidores", "result": "Vitória do Animal Laborans", "badge": "Crise Política", "detail": "A esfera social absorve a esfera pública; a ação é substituída pelo comportamento mecânico e a política vira mera administração de necessidades vitais."}]}], "structure_table": [{"num": "I", "id": "ch01", "title": "A Vita Activa e a Condição Humana", "focus": "As 3 atividades fundamentais, condição humana ≠ natureza humana, natalidade e pluralidade.", "condition": "Vida, Mundanidade, Pluralidade"}, {"num": "II", "id": "ch02", "title": "As Esferas Pública e Privada", "focus": "Zoon politikon vs. animal socialis, a polis e o bios politikos, distinção entre idion e koinon.", "condition": "Esfera Pública / Polis"}, {"num": "III", "id": "ch03", "title": "Labor", "focus": "Processo biológico, servilidade da necessidade, futilidade do ciclo sem permanência, ponos vs. ergon.", "condition": "Vida / Corpo"}, {"num": "IV", "id": "ch04", "title": "Trabalho", "focus": "Homo faber, durabilidade e estabilidade mundana, objetividade do artifício, uso vs. consumo.", "condition": "Mundanidade / Artifício"}, {"num": "V", "id": "ch05", "title": "Ação", "focus": "Revelação do agente ('quem' vs 'o quê'), discurso, segundo nascimento (archein), imprevisibilidade e milagre.", "condition": "Pluralidade / Discurso"}, {"num": "VI", "id": "ch06", "title": "A Vita Activa e a Era Moderna", "focus": "Três eventos inaugurais (América, Reforma, Telescópio), ponto arquimediano, vitória do animal laborans.", "condition": "Alienação do Mundo"}]};
+    var CHAPTERS_DATA = [{"id": "ch01", "num": "I", "title": "A Vita Activa e a Condição Humana", "subtitle": "As três atividades fundamentais, a natalidade como categoria central e a pluralidade", "core_idea": "A vita activa compreende três atividades humanas fundamentais — labor, trabalho e ação — cada uma correspondendo a uma condição básica da vida humana na Terra. A ação é a atividade política por excelência, e a natalidade é a categoria central do pensamento político.", "frameworks": [{"name": "As três atividades fundamentais", "when": "Ao analisar qualquer atividade humana, classifique-a em labor, trabalho ou ação.", "how": "Labor → condição da vida (processo biológico do corpo: crescimento, metabolismo, declínio); Trabalho → condição da mundanidade (produz o mundo artificial de coisas que transcende as vidas individuais); Ação → condição da pluralidade (atividade que se exerce diretamente entre os homens)."}, {"name": "Ação é a atividade política por excelência", "when": "Ao pensar sobre política, liberdade e iniciativa.", "how": "A ação é a única que se exerce diretamente entre os homens, sem mediação das coisas ou da matéria. A natalidade (não a mortalidade) constitui a categoria central do pensamento político: 'o novo começo inerente a cada nascimento pode fazer-se sentir no mundo somente porque o recém-chegado possui a capacidade de iniciar algo novo, isto é, de agir'."}, {"name": "Condição humana ≠ natureza humana", "when": "Ao evitar essencialismos sobre 'o que é o homem'.", "how": "A condição humana não é o mesmo que a natureza humana; a soma das atividades e capacidades humanas não constitui algo que se assemelhe à natureza humana. Os homens são seres condicionados — tudo o que toca a vida humana assume o caráter de condição da existência."}, {"name": "Pluralidade", "when": "Ao pensar sobre a condição da política.", "how": "O fato de que homens (não o Homem) vivem na Terra e habitam o mundo. É a conditio per quam (não apenas sine qua non) de toda vida política: 'somos todos os mesmos, isto é, humanos, sem que ninguém seja exatamente igual a qualquer pessoa que tenha existido, exista ou venha a existir'."}], "concepts": [{"term": "Vita activa", "desc": "A vida humana na medida em que se empenha ativamente em fazer algo."}, {"term": "Labor", "desc": "Atividade correspondente ao processo biológico do corpo humano."}, {"term": "Trabalho", "desc": "Atividade correspondente ao artificialismo da existência humana."}, {"term": "Ação", "desc": "Única atividade que se exerce diretamente entre os homens."}, {"term": "Natalidade", "desc": "A condição humana da ação; o novo começo inerente a cada nascimento."}, {"term": "Mortalidade", "desc": "A condição humana da vida individual."}, {"term": "Mundanidade", "desc": "A condição humana do trabalho."}, {"term": "Pluralidade", "desc": "A condição humana da ação."}], "mental_models": ["Pense na ação como um segundo nascimento: com palavras e atos nos inserimos no mundo humano.", "Pense na condição humana como condicionamento: tudo o que toca a vida humana torna-se condição da existência.", "Pense na pluralidade como a paradoxal pluralidade de seres singulares: iguais (capazes de se compreender) e diferentes (singulares)."], "anti_patterns": [{"wrong": "Confundir condição humana com natureza humana", "fix": "As tentativas de definir a natureza humana levam à construção de alguma deidade (o deus dos filósofos)."}, {"wrong": "Reduzir a política à necessidade biológica", "fix": "A ação não é imposta pela necessidade (como o labor) nem se rege pela utilidade (como o trabalho)."}], "takeaways": ["Distinga labor, trabalho e ação pelas condições que lhes correspondem (vida, mundanidade, pluralidade).", "A ação é a atividade política por excelência; a natalidade é sua categoria central.", "Não confunda condição humana com natureza humana.", "A pluralidade é a condição de toda vida política."], "connects_to": [{"ch": "ch02", "num": "II", "reason": "A distinção entre esferas pública e privada conecta-se à ação como atividade política."}, {"ch": "ch03", "num": "III", "reason": "O labor conecta-se à esfera privada e à necessidade biológica."}, {"ch": "ch05", "num": "V", "reason": "A ação e a natalidade conectam-se à revelação do agente pelo discurso."}]}, {"id": "ch02", "num": "II", "title": "As Esferas Pública e Privada", "subtitle": "O animal político versus animal socialis, o bios politikos e a polis grega", "core_idea": "O homem é um animal político, não apenas social. A polis deu ao cidadão uma segunda vida — o bios politikos — além da vida privada, distinguindo o que é próprio (idion) do que é comum (koinon).", "frameworks": [{"name": "O homem é um animal político, não apenas social", "when": "Ao analisar a relação entre indivíduo e comunidade.", "how": "A tradução de zoon politikon como animal socialis (Sêneca, Tomás de Aquino) revela o esquecimento da concepção grega de política: 'o termo social é de origem romana, sem qualquer equivalente na língua ou no pensamento gregos'. Para os gregos, a capacidade de organização política difere e é diretamente oposta à associação natural centrada na casa (oikia) e na família."}, {"name": "A polis como segunda vida", "when": "Ao pensar sobre a cidadania e a vida pública.", "how": "O surgimento da cidade-estado significou que o homem recebera, além de sua vida privada, uma espécie de segunda vida, o seu bios politikos: 'agora cada cidadão pertence a duas ordens de existência; e há uma grande diferença em sua vida entre aquilo que lhe é próprio (idion) e o que é comum (koinon)'."}, {"name": "Ação e discurso são coevos e coiguais", "when": "Ao analisar a vida política.", "how": "Na polis, o discurso e a ação eram tidos como da mesma categoria e da mesma espécie. O discurso e a ação eram as duas atividades consideradas políticas e constituintes das comunidades humanas."}], "concepts": [{"term": "Zoon politikon", "desc": "O homem como animal político (Aristóteles)."}, {"term": "Animal socialis", "desc": "A tradução romana que substituiu o político pelo social."}, {"term": "Oikia", "desc": "A casa, centro da associação natural (família)."}, {"term": "Bios politikos", "desc": "A segunda vida, a vida pública do cidadão."}, {"term": "Idion", "desc": "O que é próprio do indivíduo."}, {"term": "Koinon", "desc": "O que é comum."}, {"term": "Societas", "desc": "Aliança entre pessoas para um fim específico (origem romana)."}], "mental_models": ["Pense na polis como uma segunda vida: além da vida privada, o cidadão tem um bios politikos.", "Pense no social como uma categoria romana: sem equivalente grego, revela o esquecimento da política."], "anti_patterns": [{"wrong": "Reduzir o político ao social", "fix": "A substituição inconsciente do social pelo político revela até que ponto a concepção grega de política foi esquecida."}, {"wrong": "Confundir a associação natural (família) com a organização política", "fix": "Para os gregos, a associação doméstica (necessidade) e a organização política (liberdade) eram diretamente opostas."}], "takeaways": ["O homem é um animal político, não apenas social.", "A polis deu ao cidadão uma segunda vida (bios politikos).", "Distinga o que é próprio (idion) do que é comum (koinon).", "Ação e discurso são coevos e coiguais na vida política."], "connects_to": [{"ch": "ch01", "num": "I", "reason": "A ação como atividade política conecta-se à distinção fundamental entre esferas."}, {"ch": "ch05", "num": "V", "reason": "O discurso e a ação conectam-se à revelação do agente na esfera pública."}]}, {"id": "ch03", "num": "III", "title": "Labor", "subtitle": "O ciclo da vida biológica, a servilidade da necessidade e o animal laborans", "core_idea": "O labor é a atividade do corpo que atende às necessidades da vida — cíclico, consome, não deixa produto durável. Distingue-se do trabalho, que fabrica coisas duráveis. O labor é servil e, em excesso, fútil.", "frameworks": [{"name": "Labor vs. trabalho", "when": "Ao classificar atividades humanas.", "how": "O labor é a atividade do corpo que atende às necessidades da vida; o trabalho fabrica coisas duráveis que constituem o mundo. Todas as línguas europeias, antigas e modernas, possuem duas palavras de etimologia diferente para designar o que hoje tratamos como a mesma atividade: o grego distingue ponein e ergazesthai; o latim, laborare e facere/fabricari; o francês, travailler e ouvrer; o alemão, arbeiten e werken."}, {"name": "O labor é servil", "when": "Ao analisar a hierarquia das atividades.", "how": "'O labor do nosso corpo, exigido pelas necessidades deste último, é servil'. A escravidão na antiguidade não era exploração para lucro, mas a tentativa de excluir o labor das condições da vida humana."}, {"name": "A futilidade do labor", "when": "Ao avaliar o valor de uma atividade.", "how": "Uma vida que 'não se fixa nem se realiza em coisa alguma que seja permanente, que continue a existir após terminado o labor' é fútil. O perigo é que uma sociedade deslumbrada pela abundância e presa ao funcionamento de um processo interminável já não reconheça sua própria futilidade."}], "concepts": [{"term": "Labor", "desc": "Atividade correspondente ao processo biológico do corpo humano."}, {"term": "Animal laborans", "desc": "O homem que labora e 'se mistura com' os materiais."}, {"term": "Ponos/ergon", "desc": "A distinção grega entre labor e trabalho."}, {"term": "Banausoi", "desc": "Homens cujo principal interesse é o ofício, não o mundo público."}, {"term": "Skhole", "desc": "A abstenção de atividades não-políticas, condição da vida política."}], "mental_models": ["Pense no labor como cíclico: como o processo biológico, consome e não deixa produto durável.", "Pense no labor como servil: atende às necessidades da vida, que são as mesmas para o animal humano e para outras formas de vida animal."], "anti_patterns": [{"wrong": "Confundir labor com trabalho", "fix": "O labor não deixa produto durável; o trabalho fabrica coisas que constituem o mundo artificial."}, {"wrong": "Tratar a escravidão antiga como exploração para lucro", "fix": "Era a tentativa de excluir a servilidade do labor das condições da vida livre dos cidadãos."}, {"wrong": "Viver preso ao processo interminável do labor", "fix": "A vida que não se fixa em nada permanente torna-se fútil e escrava do consumo."}], "takeaways": ["Distinga labor (cíclico, consome) de trabalho (fabrica coisas duráveis).", "O labor é servil: atende às necessidades vitais impostas pelo corpo.", "Uma vida presa ao labor sem nada permanente é fútil."], "connects_to": [{"ch": "ch01", "num": "I", "reason": "O labor conecta-se à condição biológica da vida."}, {"ch": "ch04", "num": "IV", "reason": "O trabalho (homo faber) opõe-se à transitoriedade do labor."}, {"ch": "ch06", "num": "VI", "reason": "A vitória do animal laborans conecta-se à sociedade de consumo moderna."}]}, {"id": "ch04", "num": "IV", "title": "Trabalho", "subtitle": "O homo faber, a durabilidade das coisas, a objetividade do mundo e a reificação", "core_idea": "O trabalho de nossas mãos (homo faber) fabrica coisas duráveis que emprestam estabilidade e solidez ao artifício humano. Contra a subjetividade dos homens ergue-se a objetividade do mundo feito pelo homem.", "frameworks": [{"name": "A durabilidade do mundo", "when": "Ao analisar o valor do trabalho e da produção.", "how": "O trabalho de nossas mãos fabrica a infinita variedade de coisas cuja soma total constitui o artifício humano. As coisas do mundo emprestam ao artifício humano a estabilidade e a solidez sem as quais não se poderia esperar que servisse de abrigo à criatura mortal e instável que é o homem."}, {"name": "Objetividade do mundo", "when": "Ao pensar sobre a estabilidade e a identidade.", "how": "Contra a subjetividade dos homens ergue-se a objetividade do mundo feito pelo homem: 'os homens, a despeito de sua contínua mutação, podem reaver sua invariabilidade, isto é, sua identidade no contato com objetos que não variam, como a mesma cadeira e a mesma mesa'."}, {"name": "Uso vs. consumo", "when": "Ao distinguir objetos de uso de bens de consumo.", "how": "O uso desgasta a durabilidade (acidental); o consumo destrói (fim intrínseco): 'o que distingue o mais frágil par de sapatos dos meros bens de consumo é que não se estragarão se não forem usados — o fato de que têm certa independência própria'."}], "concepts": [{"term": "Homo faber", "desc": "O homem que 'faz' e literalmente 'trabalha sobre' os materiais."}, {"term": "Artifício humano", "desc": "A soma total das coisas fabricadas pelo trabalho."}, {"term": "Durabilidade", "desc": "A qualidade das coisas do mundo que lhes dá relativa independência dos homens."}, {"term": "Objetividade", "desc": "A qualidade do mundo que resiste às vorazes necessidades de seus fabricantes e usuários."}, {"term": "Reificação", "desc": "A transformação de matéria em objeto durável."}], "mental_models": ["Pense no mundo como um abrigo: o artifício humano protege o homem contra a natureza.", "Pense na objetividade como estabilidade: as coisas do mundo estabilizam a vida humana.", "Pense no uso como desgaste acidental, e no consumo como destruição intrínseca."], "anti_patterns": [{"wrong": "Confundir uso com consumo", "fix": "O uso desgasta a durabilidade dos objetos; o consumo os destrói como seu próprio fim."}, {"wrong": "Tratar o mundo como mero recurso", "fix": "Sem um mundo durável interposto entre os homens e a natureza, haveria eterno movimento, mas não objetividade nem abrigo."}], "takeaways": ["O trabalho fabrica coisas duráveis que constituem o mundo humano.", "A objetividade do mundo estabiliza a instabilidade da vida humana.", "Distinga uso (desgaste acidental) de consumo (destruição intrínseca)."], "connects_to": [{"ch": "ch01", "num": "I", "reason": "O trabalho conecta-se à condição da mundanidade."}, {"ch": "ch03", "num": "III", "reason": "O trabalho (homo faber) opõe-se ao ciclo perpétuo do labor."}, {"ch": "ch06", "num": "VI", "reason": "A perda da estabilidade do homo faber culmina na vitória do animal laborans."}]}, {"id": "ch05", "num": "V", "title": "Ação", "subtitle": "A revelação do agente, o segundo nascimento, a pluralidade e a imprevisibilidade", "core_idea": "A ação é a atividade política por excelência. Através de palavras e atos, os homens se manifestam uns aos outros e revelam 'quem' são. Agir significa tomar iniciativa, iniciar algo novo.", "frameworks": [{"name": "A revelação do agente no discurso e na ação", "when": "Ao analisar a identidade e a manifestação humana.", "how": "Através de palavras e atos, os homens se manifestam uns aos outros, não como meros objetos físicos, mas enquanto homens: 'é com palavras e atos que nos inserimos no mundo humano; e esta inserção é como um segundo nascimento'. A ação e o discurso revelam 'quem' alguém é (sua singularidade), não 'o quê' (suas qualidades ou talentos)."}, {"name": "Ação como segundo nascimento", "when": "Ao pensar sobre iniciativa e liberdade.", "how": "Com palavras e atos nos inserimos no mundo humano, confirmando e assumindo o fato original e singular do nosso aparecimento físico: 'agir, no sentido mais geral do termo, significa tomar iniciativa, iniciar (como o indica a palavra grega archein, começar, ser o primeiro)'."}, {"name": "Ação e discurso", "when": "Ao analisar a relação entre fazer e dizer.", "how": "A ação sem discurso perderia seu caráter revelador: 'sem o discurso, a ação deixaria de ser ação, pois não haveria ator; e o ator, o agente do ato, só é possível se for, ao mesmo tempo, o autor das palavras'."}, {"name": "A imprevisibilidade e o milagre", "when": "Ao pensar sobre a liberdade e a novidade.", "how": "O novo sempre surge sob o disfarce do milagre: 'o fato de que o homem é capaz de agir significa que se pode esperar dele o inesperado, que ele é capaz de realizar o infinitamente improvável'."}], "concepts": [{"term": "Ação", "desc": "A única atividade que se exerce diretamente entre os homens, sem mediação das coisas."}, {"term": "Discurso", "desc": "O modo pelo qual os seres humanos se manifestam uns aos outros."}, {"term": "Pluralidade", "desc": "A condição básica da ação e do discurso, com o duplo aspecto de igualdade e diferença."}, {"term": "Natalidade", "desc": "A condição humana da ação; o novo começo inerente a cada nascimento."}, {"term": "Archein", "desc": "Começar, ser o primeiro, governar."}, {"term": "Alteridade", "desc": "A qualidade de ser diferente; no homem, torna-se singularidade."}], "mental_models": ["Pense na ação como um segundo nascimento: com palavras e atos nos inserimos no mundo humano.", "Pense na ação como início: agir é tomar iniciativa, iniciar algo novo (archein).", "Pense na imprevisibilidade como milagre: o novo sempre surge sob o disfarce do milagre."], "anti_patterns": [{"wrong": "Reduzir a ação à necessidade ou utilidade", "fix": "A ação não é imposta pela necessidade (como o labor) nem se rege pela utilidade (como o trabalho)."}, {"wrong": "Separar ação de discurso", "fix": "A ação sem discurso perderia seu caráter revelador; sem o discurso, não haveria ator no mundo."}], "takeaways": ["A ação revela 'quem' alguém é, através de palavras e atos.", "Agir é tomar iniciativa, iniciar algo novo (segundo nascimento).", "Ação e discurso são inseparáveis: o ator é também o autor das palavras.", "A imprevisibilidade é inerente à ação; o novo surge como milagre."], "connects_to": [{"ch": "ch01", "num": "I", "reason": "A ação conecta-se à condição da pluralidade e à natalidade."}, {"ch": "ch02", "num": "II", "reason": "O discurso e a ação conectam-se à vida política da polis."}]}, {"id": "ch06", "num": "VI", "title": "A Vita Activa e a Era Moderna", "subtitle": "Os três eventos inaugurais, o ponto de vista arquimediano e a vitória do animal laborans", "core_idea": "Três eventos marcaram o limiar da era moderna — a descoberta da América, a Reforma e a invenção do telescópio. Todos contribuíram para a alienação do homem em relação ao mundo, culminando na vitória do animal laborans.", "frameworks": [{"name": "A alienação do mundo", "when": "Ao analisar a modernidade e suas crises.", "how": "Três grandes eventos determinaram o caráter da era moderna: (1) a descoberta da América e a exploração de toda a Terra; (2) a Reforma, que desencadeou o processo de expropriação individual e acúmulo de riqueza social; (3) a invenção do telescópio, que ensejou uma nova ciência que considera a natureza da Terra do ponto de vista do universo."}, {"name": "O ponto de vista arquimediano", "when": "Ao pensar sobre ciência, técnica e alienação.", "how": "A ciência moderna considera a natureza da Terra do ponto de vista do universo, alienando o homem do seu ambiente imediato: 'quanto maior a distância entre o homem e o seu ambiente, o mundo ou a terra, mais ele pode observar e medir, e menos espaço mundano e terreno lhe restará'. A velocidade conquistou o espaço, mas ao preço de alienar o homem do seu ambiente imediato."}, {"name": "A vitória do animal laborans", "when": "Ao analisar a sociedade moderna do trabalho.", "how": "A era moderna trouxe consigo a glorificação teórica do trabalho e resultou na transformação da vita activa, com a vitória do animal laborans sobre o homo faber e o zoon politikon."}], "concepts": [{"term": "Alienação do mundo", "desc": "A perda do mundo comum, do ambiente imediato e terreno."}, {"term": "Ponto de vista arquimediano", "desc": "A perspectiva do universo, que aliena o homem da Terra."}, {"term": "Ascetismo do mundo interior", "desc": "O fenômeno identificado por Max Weber como a fonte da mentalidade capitalista."}, {"term": "Animal laborans", "desc": "O homem que labora, que venceu na era moderna."}, {"term": "Homo faber", "desc": "O homem que fabrica, que perdeu para o animal laborans."}], "mental_models": ["Pense na era moderna como alienação do mundo: a descoberta da Terra e do universo alienou o homem do seu ambiente imediato.", "Pense no ponto arquimediano como distância: quanto maior a distância, mais se observa e mede, mas menos espaço mundano resta.", "Pense na vitória do animal laborans como a glorificação do trabalho e da sociedade de consumo."], "anti_patterns": [{"wrong": "Confundir a era moderna com o mundo moderno", "fix": "O mundo em que vivemos, embora resulte da era moderna, não é idêntico ao mundo da era moderna."}, {"wrong": "Tratar a velocidade como pura conquista", "fix": "Qualquer diminuição de distâncias terrestres é conquistada ao preço de alienar o homem do seu ambiente."}], "takeaways": ["Três eventos marcaram a era moderna: descoberta da América, Reforma e telescópio.", "A ciência moderna aliena o homem do mundo (ponto de vista arquimediano).", "A era moderna glorificou o trabalho, com a vitória do animal laborans."], "connects_to": [{"ch": "ch01", "num": "I", "reason": "A vita activa conecta-se à análise da era moderna."}, {"ch": "ch03", "num": "III", "reason": "O animal laborans conecta-se à vitória do labor na sociedade de consumo moderna."}, {"ch": "ch04", "num": "IV", "reason": "O homo faber conecta-se à perda de estabilidade para a volatilidade do consumo."}]}];
+    var GLOSSARY_DATA = [{"term": "Ação", "def": "A única atividade que se exerce diretamente entre os homens, sem mediação das coisas ou da matéria; a atividade política por excelência.", "chapters": [1, 5]}, {"term": "Alienação do mundo", "def": "A perda do mundo comum, do ambiente imediato e terreno, característica da era moderna.", "chapters": [6]}, {"term": "Alteridade", "def": "A qualidade de ser diferente; no homem, torna-se singularidade.", "chapters": [5]}, {"term": "Animal laborans", "def": "O homem que labora e 'se mistura com' os materiais; venceu na era moderna.", "chapters": [3, 6]}, {"term": "Archein", "def": "Começar, ser o primeiro, governar; a raiz grega de 'agir'.", "chapters": [5]}, {"term": "Artifício humano", "def": "A soma total das coisas fabricadas pelo trabalho.", "chapters": [4]}, {"term": "Banausoi", "def": "Homens cujo principal interesse é o ofício, não o mundo público.", "chapters": [3]}, {"term": "Bios politikos", "def": "A segunda vida, a vida pública do cidadão.", "chapters": [2]}, {"term": "Condição humana", "def": "As condições nas quais a vida foi dada ao homem na Terra; não é o mesmo que natureza humana.", "chapters": [1]}, {"term": "Discurso", "def": "O modo pelo qual os seres humanos se manifestam uns aos outros.", "chapters": [5]}, {"term": "Durabilidade", "def": "A qualidade das coisas do mundo que lhes dá relativa independência dos homens.", "chapters": [4]}, {"term": "Homo faber", "def": "O homem que 'faz' e literalmente 'trabalha sobre' os materiais.", "chapters": [4]}, {"term": "Idion", "def": "O que é próprio do indivíduo.", "chapters": [2]}, {"term": "Koinon", "def": "O que é comum.", "chapters": [2]}, {"term": "Labor", "def": "A atividade correspondente ao processo biológico do corpo humano; condição da vida.", "chapters": [1, 3]}, {"term": "Mortalidade", "def": "A condição humana da vida individual.", "chapters": [1]}, {"term": "Mundanidade", "def": "A condição humana do trabalho.", "chapters": [1]}, {"term": "Natalidade", "def": "A condição humana da ação; o novo começo inerente a cada nascimento.", "chapters": [1, 5]}, {"term": "Objetividade", "def": "A qualidade do mundo que resiste às vorazes necessidades de seus fabricantes e usuários.", "chapters": [4]}, {"term": "Oikia", "def": "A casa, centro da associação natural (família).", "chapters": [2]}, {"term": "Pluralidade", "def": "O fato de que homens (não o Homem) vivem na Terra e habitam o mundo; condição da ação.", "chapters": [1, 5]}, {"term": "Ponto de vista arquimediano", "def": "A perspectiva do universo, que aliena o homem da Terra.", "chapters": [6]}, {"term": "Reificação", "def": "A transformação de matéria em objeto durável.", "chapters": [4]}, {"term": "Skhole", "def": "A abstenção de atividades não-políticas, condição da vida política.", "chapters": [3]}, {"term": "Trabalho", "def": "A atividade correspondente ao artificialismo da existência humana; condição da mundanidade.", "chapters": [1, 4]}, {"term": "Vita activa", "def": "A vida humana na medida em que se empenha ativamente em fazer algo.", "chapters": [1]}, {"term": "Zoon politikon", "def": "O homem como animal político (Aristóteles).", "chapters": [2]}];
+    var CHEATSHEET_DATA = {"activities_table": [{"activity": "Labor", "condition": "Vida (processo biológico do corpo)", "character": "Cíclico, consome, servil, repetitivo", "product": "Nada durável (consome-se no ciclo vital)"}, {"activity": "Trabalho", "condition": "Mundanidade (artifício artificial)", "character": "Fabrica coisas duráveis, instrumental, linear", "product": "O mundo de coisas e ferramentas (artifício humano)"}, {"activity": "Ação", "condition": "Pluralidade (inter-homines)", "character": "Direta entre os homens, livre, imprevisível", "product": "Revela 'quem' é o agente; cria histórias e teias de relações"}], "distinctions_table": [{"distinction": "Labor vs. Trabalho", "term1": "Labor (corpo, ciclo biológico, não deixa produto permanente)", "term2": "Trabalho (mãos, estabilidade, edifica o artifício humano durável)", "tell": "O produto dura além do esforço ou é consumido na hora?"}, {"distinction": "Uso vs. Consumo", "term1": "Uso (desgaste acidental pela convivência)", "term2": "Consumo (destruição como finalidade intrínseca)", "tell": "A coisa preserva sua independência se não for tocada?"}, {"distinction": "Público vs. Privado", "term1": "Público (koinon, bios politikos, igualdade perante pares)", "term2": "Privado (idion, oikia, reino da necessidade e da família)", "tell": "Está no espaço da deliberação comum ou na gestão doméstica?"}, {"distinction": "Condição vs. Natureza", "term1": "Condição humana (existência condicionada pelo artifício e biologia)", "term2": "Natureza humana (essência imutável ou deidade filosófica)", "tell": "Trata-se de capacidades condicionadas ou de uma essência metafísica fixa?"}, {"distinction": "Animal laborans vs. Homo faber", "term1": "Animal laborans (mistura-se à matéria, vive no ciclo)", "term2": "Homo faber (opera sobre a matéria, ergue estruturas)", "tell": "O indivíduo consome o mundo ou ergue um abrigo estável?"}, {"distinction": "Político vs. Social", "term1": "Político (origem grega: bios politikos, pluralidade e liberdade)", "term2": "Social (origem romana: societas, administração e necessidade)", "tell": "Há deliberação livre entre desiguais iguais ou gestão uniforme de conduta?"}], "decision_guide": [{"question": "Atende diretamente às necessidades vitais do corpo e ao ciclo de sobrevivência?", "classification": "Labor", "action_rule": "Enquadrar na esfera da necessidade e no ciclo biológico; reconhecer sua servilidade natural."}, {"question": "Fabrica um objeto com matéria-prima que permanece no espaço após o esforço?", "classification": "Trabalho", "action_rule": "Enquadrar no artifício humano e na condição da mundanidade; conferir estabilidade objetiva."}, {"question": "Exerce-se pela palavra e pelo ato direto entre pessoas sem substrato instrumental?", "classification": "Ação", "action_rule": "Enquadrar na esfera política e na condição da pluralidade; acolher a imprevisibilidade da natalidade."}, {"question": "A atividade trata a ciência sob uma perspectiva exterior ao planeta Terra?", "classification": "Ponto de vista arquimediano", "action_rule": "Diagnosticar como vetor de alienação do mundo moderno e perda do enraizamento terreno."}, {"question": "A sociedade glorifica o emprego e a capacidade produtiva em função do consumo em massa?", "classification": "Vitória do animal laborans", "action_rule": "Identificar a absorção da esfera pública pela esfera social e a degradação da ação em mero comportamento."}], "quick_topics": [{"topic": "As três atividades da Vita Activa", "chapter": "ch01", "num": "I"}, {"topic": "Esferas pública e privada (idion vs koinon)", "chapter": "ch02", "num": "II"}, {"topic": "Labor, escravidão e necessidade vital", "chapter": "ch03", "num": "III"}, {"topic": "Trabalho, artifício humano e homo faber", "chapter": "ch04", "num": "IV"}, {"topic": "Ação, discurso, natalidade e imprevisibilidade", "chapter": "ch05", "num": "V"}, {"topic": "Era moderna, ponto arquimediano e animal laborans", "chapter": "ch06", "num": "VI"}]};
+    var PATTERNS_DATA = {"patterns": [{"id": "pat-01", "name": "Classificação da Vita Activa", "category": "Padrão de Análise", "when": "Ao analisar qualquer ocupação, política pública ou atividade humana.", "how": "Pergunte sistematicamente: 'Isto é labor (necessidade vital), trabalho (fabricação de durabilidade) ou ação (iniciativa entre pares)?'.", "tradeoffs": "Na modernidade avançada, muitas atividades foram hibridizadas: o trabalho foi reduzido a 'ganha-pão' (labor) e a política foi reduzida à administração burocrática das necessidades."}, {"id": "pat-02", "name": "Distinção Esfera Pública vs. Privada", "category": "Padrão de Análise", "when": "Ao avaliar os limites da intervenção estatal, a cidadania e a relação indivíduo-comunidade.", "how": "Separe com rigor o domínio do que é próprio (idion/oikia — casa, necessidade, proteção) do que é comum (koinon/polis — deliberação livre entre iguais).", "tradeoffs": "A emergência histórica da 'esfera social' moderna borrou essa fronteira, transformando assuntos privados de subsistência no centro da deliberação pública governamental."}, {"id": "pat-03", "name": "Distinção Uso vs. Consumo", "category": "Padrão de Análise", "when": "Ao analisar a economia de bens, sustentabilidade, arquitetura institucional e tecnologia.", "how": "Avalie se a relação com o objeto preserva a durabilidade que abriga o homem (uso) ou se o destrói no próprio ato de realização biológica (consumo).", "tradeoffs": "A economia consumista contemporânea força bens de uso (carros, roupas, aparelhos) a se comportarem como bens de consumo perecíveis com obsolescência programada."}, {"id": "pat-04", "name": "Ação como Segundo Nascimento", "category": "Técnica de Pensamento", "when": "Ao pensar sobre iniciativa institucional, inovação política e ruptura com o fatalismo histórico.", "how": "Encare cada ato e discurso não como resposta mecânica a causas anteriores, mas como a inserção deliberada de um novo começo no mundo (archein), confirmando o fato original da natalidade.", "tradeoffs": "Iniciar o novo introduz profunda irreversibilidade e imprevisibilidade nos rumos da história humana."}, {"id": "pat-05", "name": "Ação e Discurso Inseparáveis", "category": "Técnica de Pensamento", "when": "Ao avaliar liderança, deliberação coletiva e manifestação pública.", "how": "Exija a mútua dependência entre a ação prática e a palavra que a elucida. Sem discurso, a ação é força física cega; sem ação, o discurso é retórica descolada da realidade.", "tradeoffs": "A pura eloquência sem coragem de aparição não constrói espaço público; exige exposição do agente perante seus pares."}, {"id": "pat-06", "name": "A Imprevisibilidade como Milagre", "category": "Técnica de Pensamento", "when": "Ao projetar futuros políticos e institucionais contra previsões probabilísticas e deterministas.", "how": "Reconheça que a faculdade humana de agir rompe com cadeias deterministas. O novo sempre surge no horizonte estatístico sob a forma do milagre (o infinitamente improvável).", "tradeoffs": "Exige que a comunidade política desenvolva as faculdades da promessa (para criar ilhas de certeza) e do perdão (para desatar nós de atos irreversíveis)."}], "anti_patterns_table": [{"antipattern": "Confundir condição humana com natureza humana", "problem": "Tenta definir o homem por essências metafísicas fixas ou biológicas, criando deuses ou determinismos.", "correction": "Tratar o homem como ser condicionado — tudo o que ele fabrica ou experiencia torna-se nova condição da sua existência."}, {"antipattern": "Reduzir o político ao social", "problem": "Transforma a deliberação cívica em mera administração tecnocrática das necessidades de sobrevivência coletiva.", "correction": "Resgatar a dimensão da polis e do bios politikos como espaço de liberdade, excelência e revelação do agente."}, {"antipattern": "Confundir labor com trabalho", "problem": "Trata o esforço biológico cíclico e o ato de edificar um mundo artificial durável como se fossem a mesma coisa.", "correction": "Distinguir o ciclo consumo-sobrevivência (animal laborans) da fabricação do artifício estável (homo faber)."}, {"antipattern": "Confundir uso com consumo", "problem": "Devora o mundo material tratando objetos duráveis como descartáveis efêmeros.", "correction": "Reconhecer que objetos de uso conferem objetividade e identidade estável à frágil vida humana."}, {"antipattern": "Separar ação de discurso", "problem": "Reduz a ação a violência/coerção instrumental ou o discurso a propaganda oca.", "correction": "Manter a unidade do agente: quem age deve ser o autor das palavras que revelam sua singularidade."}, {"antipattern": "Tratar a velocidade como pura conquista", "problem": "Ignora que encurtar distâncias terrenas aliena o homem de sua ancoragem e do seu ambiente imediato.", "correction": "Compreender os custos da perspectiva arquimediana e valorizar o enraizamento no mundo compartilhado."}]};
+
+    /* APPLICATION STATE */
+    var currentTab = 'overview';
+    var currentChapterIndex = 0;
+
+    /* ESCAPE UTILITY */
+    function esc(s) {
+      if (s === null || s === undefined) return '';
+      return String(s)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;');
+    }
+
+    /* INITIALIZATION */
+    document.addEventListener('DOMContentLoaded', function() {
+      renderOverview();
+      initChapters();
+      renderGlossary(GLOSSARY_DATA);
+      renderCheatsheet();
+      renderPatterns();
+      setupKeyboardNav();
+    });
+
+    /* TAB SWITCHING */
+    function switchTab(tabId) {
+      currentTab = tabId;
+      document.querySelectorAll('.nav-item').forEach(function(el) {
+        el.classList.remove('active');
+      });
+      document.querySelectorAll('.view-section').forEach(function(el) {
+        el.classList.remove('active');
+      });
+
+      var activeNav = document.getElementById('nav-' + tabId);
+      var activeSec = document.getElementById('sec-' + tabId);
+
+      if (activeNav) activeNav.classList.add('active');
+      if (activeSec) activeSec.classList.add('active');
+
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    /* RENDER SECTION 1: VISÃO GERAL */
+    function renderOverview() {
+      // Thesis
+      var thesisEl = document.getElementById('overview-thesis');
+      if (thesisEl) thesisEl.textContent = OVERVIEW_DATA.thesis;
+
+      // Meta grid
+      var metaGrid = document.getElementById('overview-meta-grid');
+      if (metaGrid) {
+        var m = OVERVIEW_DATA.meta;
+        metaGrid.innerHTML = 
+          '<div class="meta-box"><div class="meta-label">Autor</div><div class="meta-val">' + esc(OVERVIEW_DATA.author) + '</div></div>' +
+          '<div class="meta-box"><div class="meta-label">Ano Original / Tradução</div><div class="meta-val">' + esc(m.year_original) + ' · ' + esc(m.translation) + '</div></div>' +
+          '<div class="meta-box"><div class="meta-label">Extensão</div><div class="meta-val">' + esc(m.pages) + ' páginas (' + esc(m.chapters_count) + ' Capítulos)</div></div>' +
+          '<div class="meta-box"><div class="meta-label">Conceitos Mapeados</div><div class="meta-val">' + esc(m.terms_count) + ' Termos · ' + esc(m.patterns_count) + ' Padrões</div></div>';
+      }
+
+      // Decision Tree
+      var treeCont = document.getElementById('overview-tree-container');
+      if (treeCont) {
+        var html = '';
+        OVERVIEW_DATA.decision_tree.forEach(function(step) {
+          html += '<div style="margin-bottom: 20px;">' +
+            '<div style="font-weight: 600; color: var(--latao-2); margin-bottom: 12px; font-size: 1.05rem;">' + esc(step.step) + '</div>' +
+            '<div class="tree-grid">';
+          step.branches.forEach(function(b) {
+            html += '<div class="tree-card">' +
+              '<div class="tree-cond">' + esc(b.condition) + '</div>' +
+              '<div class="tree-result-row">' +
+                '<span class="tree-result-badge">' + esc(b.result) + '</span>' +
+                '<span class="tree-cond-tag">' + esc(b.badge) + '</span>' +
+              '</div>' +
+              '<div class="tree-detail">' + esc(b.detail) + '</div>' +
+            '</div>';
+          });
+          html += '</div></div>';
+        });
+        treeCont.innerHTML = html;
+      }
+
+      // Structure Table
+      var tableBody = document.querySelector('#overview-structure-table tbody');
+      if (tableBody) {
+        var html = '';
+        OVERVIEW_DATA.structure_table.forEach(function(row, idx) {
+          html += '<tr>' +
+            '<td><span class="row-num-badge">' + esc(row.num) + '</span></td>' +
+            '<td><strong style="color: var(--navy);">' + esc(row.title) + '</strong></td>' +
+            '<td>' + esc(row.focus) + '</td>' +
+            '<td><span style="font-family: var(--mono); font-size: 0.8rem; color: var(--latao); font-weight: 600;">' + esc(row.condition) + '</span></td>' +
+            '<td style="text-align: center;"><button class="btn-print" style="padding: 4px 10px; font-size: 0.75rem;" onclick="goToChapter(' + idx + ')">Ver →</button></td>' +
+          '</tr>';
+        });
+        tableBody.innerHTML = html;
+      }
+    }
+
+    /* INITIALIZE SECTION 2: CAPÍTULOS */
+    function initChapters() {
+      var chipList = document.getElementById('chapter-chip-list');
+      if (chipList) {
+        var html = '';
+        CHAPTERS_DATA.forEach(function(ch, idx) {
+          html += '<button class="chapter-chip' + (idx === 0 ? ' active' : '') + '" id="chip-ch-' + idx + '" onclick="goToChapter(' + idx + ')">' +
+            '<strong class="chip-num">' + esc(ch.num) + '</strong> ' + esc(ch.title) +
+          '</button>';
+        });
+        chipList.innerHTML = html;
+      }
+      renderChapter(0);
+    }
+
+    function goToChapter(index) {
+      if (index < 0 || index >= CHAPTERS_DATA.length) return;
+      currentChapterIndex = index;
+
+      document.querySelectorAll('.chapter-chip').forEach(function(el, idx) {
+        if (idx === index) el.classList.add('active');
+        else el.classList.remove('active');
+      });
+
+      renderChapter(index);
+      switchTab('chapters');
+    }
+
+    function navPrev() {
+      if (currentChapterIndex > 0) {
+        goToChapter(currentChapterIndex - 1);
+      }
+    }
+
+    function navNext() {
+      if (currentChapterIndex < CHAPTERS_DATA.length - 1) {
+        goToChapter(currentChapterIndex + 1);
+      }
+    }
+
+    function renderChapter(index) {
+      var ch = CHAPTERS_DATA[index];
+      if (!ch) return;
+
+      // Hero
+      document.getElementById('ch-hero-num').textContent = ch.num;
+      document.getElementById('ch-hero-eyebrow').textContent = 'Capítulo ' + ch.num + ' · A Condição Humana';
+      document.getElementById('ch-hero-title').textContent = ch.title;
+      document.getElementById('ch-hero-subtitle').textContent = ch.subtitle;
+      document.getElementById('ch-hero-core').textContent = ch.core_idea;
+
+      // Frameworks
+      var fwCont = document.getElementById('ch-frameworks-list');
+      if (fwCont) {
+        var html = '';
+        ch.frameworks.forEach(function(fw) {
+          html += '<div class="framework-card">' +
+            '<div class="framework-header">' +
+              '<span class="framework-name">' + esc(fw.name) + '</span>' +
+              '<span class="nav-badge" style="background: var(--papel-2); color: var(--navy);">Framework</span>' +
+            '</div>' +
+            '<div class="framework-when"><strong>Quando usar:</strong> ' + esc(fw.when) + '</div>' +
+            '<div class="framework-how"><strong>Como aplicar:</strong> ' + esc(fw.how) + '</div>' +
+          '</div>';
+        });
+        fwCont.innerHTML = html;
+      }
+
+      // Concepts Grid
+      var conceptsCont = document.getElementById('ch-concepts-grid');
+      if (conceptsCont) {
+        var html = '';
+        ch.concepts.forEach(function(c) {
+          html += '<div class="concept-card">' +
+            '<div class="concept-term">' + esc(c.term) + '</div>' +
+            '<div class="concept-desc">' + esc(c.desc) + '</div>' +
+          '</div>';
+        });
+        conceptsCont.innerHTML = html;
+      }
+
+      // Mental Models
+      var mmCont = document.getElementById('ch-mental-models-list');
+      if (mmCont) {
+        var html = '';
+        ch.mental_models.forEach(function(mm, idx) {
+          html += '<li><span class="list-num">' + (idx + 1) + '</span><div>' + esc(mm) + '</div></li>';
+        });
+        mmCont.innerHTML = html;
+      }
+
+      // Anti-patterns
+      var apCont = document.getElementById('ch-antipatterns-list');
+      if (apCont) {
+        var html = '';
+        ch.anti_patterns.forEach(function(ap) {
+          html += '<div class="antipattern-item">' +
+            '<div class="antipattern-wrong">❌ ' + esc(ap.wrong) + '</div>' +
+            '<div class="antipattern-fix">✓ <strong>Correção:</strong> ' + esc(ap.fix) + '</div>' +
+          '</div>';
+        });
+        apCont.innerHTML = html;
+      }
+
+      // Takeaways
+      var tkCont = document.getElementById('ch-takeaways-list');
+      if (tkCont) {
+        var html = '';
+        ch.takeaways.forEach(function(tk, idx) {
+          html += '<li><span class="list-num">' + (idx + 1) + '</span><div style="font-weight: 500;">' + esc(tk) + '</div></li>';
+        });
+        tkCont.innerHTML = html;
+      }
+
+      // Connects To
+      var connCont = document.getElementById('ch-connects-list');
+      if (connCont) {
+        var html = '';
+        ch.connects_to.forEach(function(conn) {
+          var targetIdx = CHAPTERS_DATA.findIndex(function(c) { return c.id === conn.ch; });
+          html += '<div class="connect-chip" onclick="goToChapter(' + targetIdx + ')">' +
+            '<span>Capítulo <strong>' + esc(conn.num) + '</strong></span> · ' + esc(conn.reason) +
+          '</div>';
+        });
+        connCont.innerHTML = html;
+      }
+
+      // Nav buttons state
+      var btnPrev = document.getElementById('btn-prev-ch');
+      var btnNext = document.getElementById('btn-next-ch');
+      if (btnPrev) btnPrev.disabled = (index === 0);
+      if (btnNext) btnNext.disabled = (index === CHAPTERS_DATA.length - 1);
+    }
+
+    /* RENDER SECTION 3: GLOSSÁRIO */
+    function renderGlossary(items) {
+      var grid = document.getElementById('glossary-cards-grid');
+      var stats = document.getElementById('glossary-stats-text');
+      if (!grid) return;
+
+      if (stats) {
+        stats.textContent = 'Exibindo ' + items.length + ' de ' + GLOSSARY_DATA.length + ' termos mapeados';
+      }
+
+      if (items.length === 0) {
+        grid.innerHTML = '<div class="card" style="grid-column: 1 / -1; text-align: center; color: var(--muted); padding: 40px;">Nenhum conceito correspondente encontrado.</div>';
+        return;
+      }
+
+      var html = '';
+      items.forEach(function(item) {
+        var badgesHtml = '';
+        item.chapters.forEach(function(chNum) {
+          var chIdx = chNum - 1;
+          var roman = (CHAPTERS_DATA[chIdx] ? CHAPTERS_DATA[chIdx].num : chNum);
+          badgesHtml += '<button class="ch-badge" onclick="goToChapter(' + chIdx + ')" title="Ir para o Capítulo ' + roman + '">Cap. ' + roman + '</button>';
+        });
+
+        html += '<div class="glossary-card">' +
+          '<div class="glossary-term-row">' +
+            '<span class="glossary-term-name">' + esc(item.term) + '</span>' +
+            '<div class="ch-badge-list">' + badgesHtml + '</div>' +
+          '</div>' +
+          '<div class="glossary-def">' + esc(item.def) + '</div>' +
+        '</div>';
+      });
+      grid.innerHTML = html;
+    }
+
+    function handleGlossarySearch() {
+      var q = (document.getElementById('glossary-search').value || '').trim().toLowerCase();
+      if (!q) {
+        renderGlossary(GLOSSARY_DATA);
+        return;
+      }
+
+      var filtered = GLOSSARY_DATA.filter(function(item) {
+        return item.term.toLowerCase().includes(q) || item.def.toLowerCase().includes(q);
+      });
+      renderGlossary(filtered);
+    }
+
+    /* RENDER SECTION 4: CHEATSHEET */
+    function renderCheatsheet() {
+      // Table 1: Activities
+      var tbody1 = document.querySelector('#table-activities tbody');
+      if (tbody1) {
+        var html = '';
+        CHEATSHEET_DATA.activities_table.forEach(function(r) {
+          html += '<tr>' +
+            '<td><strong style="color: var(--navy); font-size: 1.05rem;">' + esc(r.activity) + '</strong></td>' +
+            '<td><span style="font-family: var(--mono); color: var(--latao); font-weight: 600;">' + esc(r.condition) + '</span></td>' +
+            '<td>' + esc(r.character) + '</td>' +
+            '<td>' + esc(r.product) + '</td>' +
+          '</tr>';
+        });
+        tbody1.innerHTML = html;
+      }
+
+      // Table 2: Distinctions
+      var tbody2 = document.querySelector('#table-distinctions tbody');
+      if (tbody2) {
+        var html = '';
+        CHEATSHEET_DATA.distinctions_table.forEach(function(r) {
+          html += '<tr>' +
+            '<td><strong style="color: var(--navy);">' + esc(r.distinction) + '</strong></td>' +
+            '<td>' + esc(r.term1) + '</td>' +
+            '<td>' + esc(r.term2) + '</td>' +
+            '<td><em style="color: var(--navy); font-weight: 500;">' + esc(r.tell) + '</em></td>' +
+          '</tr>';
+        });
+        tbody2.innerHTML = html;
+      }
+
+      // Table 3: Decision Guide
+      var tbody3 = document.querySelector('#table-decision-guide tbody');
+      if (tbody3) {
+        var html = '';
+        CHEATSHEET_DATA.decision_guide.forEach(function(r) {
+          html += '<tr>' +
+            '<td><strong>' + esc(r.question) + '</strong></td>' +
+            '<td><span class="nav-badge" style="background: var(--navy); color: var(--latao-2); font-size: 0.82rem;">' + esc(r.classification) + '</span></td>' +
+            '<td>' + esc(r.action_rule) + '</td>' +
+          '</tr>';
+        });
+        tbody3.innerHTML = html;
+      }
+    }
+
+    /* RENDER SECTION 5: PADRÕES */
+    function renderPatterns() {
+      var cont = document.getElementById('patterns-container');
+      if (cont) {
+        var html = '';
+        PATTERNS_DATA.patterns.forEach(function(pat) {
+          html += '<div class="pattern-card">' +
+            '<div class="pattern-meta">' +
+              '<span class="pattern-cat">' + esc(pat.category) + '</span>' +
+              '<span style="font-family: var(--mono); font-size: 0.75rem; color: var(--muted);">' + esc(pat.id) + '</span>' +
+            '</div>' +
+            '<div class="pattern-title">' + esc(pat.name) + '</div>' +
+            '<div class="pattern-body">' +
+              '<div class="pattern-row"><strong>Quando usar:</strong> ' + esc(pat.when) + '</div>' +
+              '<div class="pattern-row"><strong>Como aplicar:</strong> ' + esc(pat.how) + '</div>' +
+              '<div class="pattern-row" style="background: var(--papel-2); padding: 10px 14px; border-radius: var(--radius); margin-top: 6px;">' +
+                '<strong style="color: #9C2E14;">Trade-offs & Desafios:</strong> ' + esc(pat.tradeoffs) +
+              '</div>' +
+            '</div>' +
+          '</div>';
+        });
+        cont.innerHTML = html;
+      }
+
+      // Anti-patterns Table
+      var tbody = document.querySelector('#table-antipatterns tbody');
+      if (tbody) {
+        var html = '';
+        PATTERNS_DATA.anti_patterns_table.forEach(function(r) {
+          html += '<tr>' +
+            '<td><strong style="color: #9C2E14;">❌ ' + esc(r.antipattern) + '</strong></td>' +
+            '<td>' + esc(r.problem) + '</td>' +
+            '<td><span style="color: var(--navy); font-weight: 500;">✓ ' + esc(r.correction) + '</span></td>' +
+          '</tr>';
+        });
+        tbody.innerHTML = html;
+      }
+    }
+
+    /* KEYBOARD SHORTCUTS */
+    function setupKeyboardNav() {
+      document.addEventListener('keydown', function(e) {
+        // Ignore if typing in input
+        if (document.activeElement && (document.activeElement.tagName === 'INPUT' || document.activeElement.tagName === 'TEXTAREA')) {
+          if (e.key === 'Escape') {
+            document.activeElement.blur();
+          }
+          return;
+        }
+
+        // '/' shortcut to focus search
+        if (e.key === '/') {
+          e.preventDefault();
+          switchTab('glossary');
+          var input = document.getElementById('glossary-search');
+          if (input) {
+            input.focus();
+            input.select();
+          }
+          return;
+        }
+
+        // Left / Right arrow navigation for chapters
+        if (e.key === 'ArrowLeft') {
+          if (currentTab === 'chapters') {
+            e.preventDefault();
+            navPrev();
+          }
+        } else if (e.key === 'ArrowRight') {
+          if (currentTab === 'chapters') {
+            e.preventDefault();
+            navNext();
+          }
+        }
+      });
+    }
+  </script>
+</body>
+</html>
